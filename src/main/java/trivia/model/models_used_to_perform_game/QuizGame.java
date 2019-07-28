@@ -54,12 +54,24 @@ public class QuizGame {
         }
     }
 
-    public void printScore() {
+    private long loadScore() {
         long score = quizQuestions
                 .stream()
                 .filter(quizQuestion -> quizQuestion.getSelectedAnswer().isCorrect())
                 .count();
+        return score;
+    }
 
-        System.out.println("Your score: " + score);
+    public void printScore() {
+        if (loadScore() < 3) {
+            System.out.println("YOU SUCK !!!");
+            System.out.println("Score: " + loadScore());
+        } else if (loadScore() > 3 || loadScore() < 6) {
+            System.out.println("Pretty Good. You smart bustard :) !");
+            System.out.println("Score: " + loadScore());
+        } else {
+            System.out.println("Are you a fuc**ing GENIUS or what?! :O \n" +
+                    " Anyway, CONGRATULATIONS you have got: " + loadScore() + "!!! :)");
+        }
     }
 }

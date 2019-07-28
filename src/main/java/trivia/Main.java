@@ -9,6 +9,8 @@ import trivia.model.models_used_to_perform_game.QuizQuestion;
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("Welcome in TRIVIA GAME! \n" );
+
         APITriviaURLBuilder builder = new APITriviaURLBuilder();
         QuizParameters quizParameters = new QuizParameters();
         ScannerContentLoader scannerContentLoader = new ScannerContentLoader();
