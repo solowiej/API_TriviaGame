@@ -1,1 +1,1 @@
-Konsolowa aplikacja wykozystujaca Trivia API.
+Konsolowa aplikacja wykorzystującą Trivia API.
