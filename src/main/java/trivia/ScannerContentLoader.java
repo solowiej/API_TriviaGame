@@ -14,23 +14,22 @@ public class ScannerContentLoader {
     public void loadAmount(QuizParameters quizParameters) {
         do {
             try {
-                System.out.println("Podaj liczbę pytań:");
+                System.out.println("Number of questions:");
                 String line = scanner.nextLine();
                 int questionsCount = Integer.parseInt(line);
                 if (questionsCount < 1 || questionsCount > 50) {
-                    System.err.println("Ilość pytań musi być większa od 0, oraz mniejsza niż 50.");
+                    System.err.println("The number of questions must be greater than 0 and also less than 50.");
                     continue;
                 }
-
-                // ustawiono
                 quizParameters.setAmountOfQuestions(questionsCount);
+
             } catch (NumberFormatException nfe) {
-                System.err.println("Niepoprawna liczba.");
+                System.err.println("Wrong number.");
             }
         } while (quizParameters.getAmountOfQuestions() == null);
     }
 
-    private QuizCategory sprawdzCzyIdZnajdujeSieWEnum(int categoryId) {
+    private QuizCategory checkIfIdIsDefinedInEnum(int categoryId) {
         return Arrays.stream(QuizCategory.values())
                 .filter(quizCategory -> quizCategory.getId() == categoryId)
                 .findFirst()
@@ -40,37 +39,36 @@ public class ScannerContentLoader {
     public void loadCategory(QuizParameters quizParameters) {
         do {
             try {
-                System.out.println("Podaj kategorię [wpisz identyfikator]:");
+                System.out.println("Category [enter the id]:");
                 Arrays.asList(QuizCategory.values())
                         .forEach(quizCategory ->
                                 System.out.println(quizCategory.getId() + " -> " + quizCategory.getName()));
 
                 String line = scanner.nextLine();
                 int categoryId = Integer.parseInt(line);
+                quizParameters.setCategory(checkIfIdIsDefinedInEnum(categoryId));
 
-                // ustawiono
-                quizParameters.setCategory(sprawdzCzyIdZnajdujeSieWEnum(categoryId));
             } catch (NumberFormatException nfe) {
-                System.err.println("Niepoprawna liczba.");
+                System.err.println("Wrong number.");
             }
         } while (quizParameters.getCategory() == null);
     }
 
-    private QuizDifficulty sprawdzCzyPoprawneDifficulty(String difficulty) throws IllegalArgumentException {
+    private QuizDifficulty checkIfProperDifficulty(String difficulty) throws IllegalArgumentException {
         return QuizDifficulty.valueOf(difficulty.toUpperCase());
     }
 
     public void loadDifficulty(QuizParameters quizParameters) {
         do {
             try {
-                System.out.println("Podaj poziom trudności [wpisz nazwę]:");
+                System.out.println("Difficulty:");
                 Arrays.asList(QuizDifficulty.values()).forEach(System.out::println);
 
                 String line = scanner.nextLine();
 
-                quizParameters.setDifficulty(sprawdzCzyPoprawneDifficulty(line));
+                quizParameters.setDifficulty(checkIfProperDifficulty(line));
             } catch (IllegalArgumentException iae) {
-                System.err.println("Niepoprawne wejście.");
+                System.err.println("Wrong parameter.");
             }
         } while (quizParameters.getDifficulty() == null);
     }
@@ -78,14 +76,14 @@ public class ScannerContentLoader {
     public void loadType(QuizParameters quizParameters) {
         do {
             try {
-                System.out.println("Podaj typ pytania [wpisz nazwę]:");
+                System.out.println("Type:");
                 Arrays.asList(QuizType.values()).forEach(System.out::println);
 
                 String line = scanner.nextLine();
 
                 quizParameters.setQuizType(QuizType.valueOf(line.toUpperCase()));
             } catch (IllegalArgumentException iae) {
-                System.err.println("Niepoprawne wejście.");
+                System.err.println("Wrong parameter.");
             }
         } while (quizParameters.getQuizType() == null);
     }
@@ -95,7 +93,7 @@ public class ScannerContentLoader {
         char sign;
 
         do {
-            System.out.println("Podaj odpowiedz: ");
+            System.out.println("Your answer: ");
 
             answer = scanner.nextLine();
             sign = answer.toLowerCase().charAt(0);

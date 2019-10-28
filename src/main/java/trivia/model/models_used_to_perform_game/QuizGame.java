@@ -30,12 +30,8 @@ public class QuizGame {
 
         if (quizQuestions.get(currentQuestionNumber).getAnswers().size() > answerNumber) {
 
-            // pytanie na tore odpowiedzi udzielamy
             QuizQuestion question = quizQuestions.get(currentQuestionNumber);
-
-            // odpowiedz urzytkownika
             QuizAnswer userAnswer = question.getAnswers().get(answerNumber);
-
             question.setSelectedAnswer(userAnswer);
 
             if (userAnswer.isCorrect()) {
@@ -50,7 +46,7 @@ public class QuizGame {
             }
             currentQuestionNumber++;
         } else {
-            System.err.println("Nie ma takiej odpowiedzi.");
+            System.err.println("There is no such answer.");
         }
     }
 
@@ -64,14 +60,13 @@ public class QuizGame {
 
     public void printScore() {
         if (loadScore() < 3) {
-            System.out.println("YOU SUCK !!!");
+            System.out.println("Try again:(");
             System.out.println("Score: " + loadScore());
         } else if (loadScore() > 3 || loadScore() < 6) {
-            System.out.println("Pretty Good. You smart bustard :) !");
+            System.out.println("Pretty Good :) !");
             System.out.println("Score: " + loadScore());
         } else {
-            System.out.println("Are you a fuc**ing GENIUS or what?! :O \n" +
-                    " Anyway, CONGRATULATIONS you have got: " + loadScore() + "!!! :)");
+            System.out.println("CONGRATULATIONS you have got: " + loadScore() + "!!! :)");
         }
     }
 }

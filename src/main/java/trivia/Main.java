@@ -33,7 +33,7 @@ public class Main {
 
             while (!game.quizEnded()) {
                 QuizQuestion quizQuestion = game.getCurrentQuestion();
-                System.out.println(quizQuestion); // zadaj pytanie
+                System.out.println(quizQuestion);
 
                 String answer = scannerContentLoader.loadAnswer();
                 game.submitAnswer(answer);

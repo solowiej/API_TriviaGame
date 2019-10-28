@@ -19,7 +19,6 @@ public class TriviaAPI {
         try {
             URL url = new URL(requestURL);
 
-            // wczytujemy treść z URL
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(
                             url.openStream()))) {
